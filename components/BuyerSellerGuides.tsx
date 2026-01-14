@@ -135,7 +135,7 @@ const BuyerSellerGuides = () => {
           className="text-center mt-16"
         >
           <p className="text-base sm:text-lg text-gray-600 mb-6 font-light">
-            Ready to get started? Let's discuss your real estate goals.
+            Ready to get started? Let&apos;s discuss your real estate goals.
           </p>
           <button
             onClick={() => {

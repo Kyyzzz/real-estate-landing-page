@@ -56,7 +56,7 @@ const ContactForm = () => {
             Get in <span className="text-primary">Touch</span>
           </h2>
           <p className="text-lg sm:text-xl text-gray-600 font-light">
-            Let's discuss your real estate needs
+            Let&apos;s discuss your real estate needs
           </p>
         </motion.div>
 
@@ -145,7 +145,7 @@ const ContactForm = () => {
                 <div className="bg-gray-100 border border-gray-300 rounded-lg p-4 flex items-center justify-center">
                   <p className="text-sm text-gray-600">
                     <input type="checkbox" className="mr-2" required />
-                    I'm not a robot (reCAPTCHA placeholder)
+                    I&apos;m not a robot (reCAPTCHA placeholder)
                   </p>
                 </div>
 

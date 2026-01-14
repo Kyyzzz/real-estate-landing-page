@@ -52,7 +52,7 @@ const RealtorProfile = () => {
             </p>
             <p className="text-base sm:text-lg text-gray-300 mb-8 leading-relaxed font-light">
               With almost 30 years of experience in the Pahrump real estate market, 
-              I've helped countless families find their perfect home. My commitment 
+              I&apos;ve helped countless families find their perfect home. My commitment 
               to excellence and personalized service sets me apart in the industry.
             </p>
 
