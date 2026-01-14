@@ -18,11 +18,27 @@ const Header = () => {
   }, []);
 
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setIsMobileMenuOpen(false);
-    }
+    console.log('Scrolling to section:', id); // Debug log
+    setIsMobileMenuOpen(false); // Close menu first
+    
+    // Small delay to ensure menu closes before scrolling
+    setTimeout(() => {
+      const element = document.getElementById(id);
+      console.log('Element found:', element); // Debug log
+      if (element) {
+        const headerOffset = 100; // Height of fixed header + padding
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.scrollY - headerOffset;
+
+        console.log('Scrolling to position:', offsetPosition); // Debug log
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth'
+        });
+      } else {
+        console.error('Element not found with id:', id); // Debug log
+      }
+    }, 100);
   };
 
   const navItems = [
@@ -100,7 +116,7 @@ const Header = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: 'auto' }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden mt-4 pb-4"
+              className="lg:hidden mt-4 pb-4 overflow-visible"
             >
               <nav className="flex flex-col space-y-3">
                 {navItems.map((item, index) => (
@@ -109,8 +125,13 @@ const Header = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: index * 0.05 }}
-                    onClick={() => scrollToSection(item.id)}
-                    className="text-left text-gray-700 hover:text-primary font-semibold transition-colors py-2 border-b border-gray-100 tracking-tight"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      e.stopPropagation();
+                      scrollToSection(item.id);
+                    }}
+                    className="text-left text-gray-700 hover:text-primary font-semibold transition-colors py-2 border-b border-gray-100 tracking-tight w-full"
+                    type="button"
                   >
                     {item.label}
                   </motion.button>
@@ -119,8 +140,13 @@ const Header = () => {
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: navItems.length * 0.05 }}
-                  onClick={() => scrollToSection('contact')}
-                  className="flex items-center space-x-2 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark transition-all justify-center tracking-tight"
+                  onClick={(e) => {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    scrollToSection('contact');
+                  }}
+                  className="flex items-center space-x-2 bg-primary text-white px-6 py-3 rounded-full hover:bg-primary-dark transition-all justify-center tracking-tight w-full"
+                  type="button"
                 >
                   <FaPhone className="text-sm" />
                   <span className="font-bold">Contact Us</span>
